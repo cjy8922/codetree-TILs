@@ -99,12 +99,14 @@ def shellAttack(board, isAttack, minTankPos, maxTankPos, N, M):
 
 # 포탑 재정비
 def check(board, isAttack, N, M):
+    alive = 0
     for i in range(N):
         for j in range(M):
             if board[i][j] <= 0: board[i][j] = 0
             if board[i][j] > 0 and not isAttack[i][j]: board[i][j] += 1
+            if board[i][j] > 0: alive += 1
             isAttack[i][j] = False
-    return board, isAttack
+    return alive, board, isAttack
 
 
 def main():
@@ -132,7 +134,8 @@ def main():
 
 
         # 3. 포탑 재정비
-        board, isAttack = check(board, isAttack, N, M)
+        alive, board, isAttack = check(board, isAttack, N, M)
+        if alive <= 1: break
 
     # 최후 공격자 선언
     print(max([max(line) for line in board]))
