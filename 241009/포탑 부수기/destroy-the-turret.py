@@ -3,6 +3,12 @@ from collections import deque
 dy = [0, 1, 0, -1]
 dx = [1, 0, -1, 0]
 
+def printBoard(board, N, M):
+    for i in range(N):
+        for j in range(M):
+            print(board[i][j], end=' ')
+        print()
+    print()
 
 
 # 공격자 & 수비자 결정
@@ -21,6 +27,7 @@ def decideWeakandStrong(board, latestAttackBoard, N, M):
                     if j > minTankPos[1]:
                         minTankPos = (i, j)
         return minAttack, minTankPos
+
     def _decideStrong(maxAttack, maxTankPos, i, j):
         if board[i][j] > maxAttack:
             maxAttack = board[i][j]
@@ -29,10 +36,10 @@ def decideWeakandStrong(board, latestAttackBoard, N, M):
             if latestAttackBoard[i][j] < latestAttackBoard[maxTankPos[0]][maxTankPos[1]]:
                 maxTankPos = (i, j)
             elif latestAttackBoard[i][j] == latestAttackBoard[maxTankPos[0]][maxTankPos[1]]:
-                if i + j > maxTankPos[0] + maxTankPos[1]:
+                if i + j < maxTankPos[0] + maxTankPos[1]:
                     maxTankPos = (i, j)
                 elif i + j == maxTankPos[0] + maxTankPos[1]:
-                    if j > maxTankPos[1]:
+                    if j < maxTankPos[1]:
                         maxTankPos = (i, j)
         return maxAttack, maxTankPos
 
@@ -45,6 +52,7 @@ def decideWeakandStrong(board, latestAttackBoard, N, M):
             minAttack, minTankPos = _decideWeak(minAttack, minTankPos, i, j)
             maxAttack, maxTankPos = _decideStrong(maxAttack, maxTankPos, i, j)
     return minTankPos, maxTankPos
+
 
 
 # 레이저 공격 or # 포탑 공격
@@ -84,6 +92,7 @@ def shellAttack(board, isAttack, minTankPos, maxTankPos, N, M):
     ddx = dx + [-1, 1, 1, -1]
     for i in range(8):
         ny, nx = (maxTankPos[0] + ddy[i]) % N, (maxTankPos[1] + ddx[i]) % M
+        if ny == minTankPos[0] and nx == minTankPos[1]: continue
         board[ny][nx] -= (attackPoint // 2)
         isAttack[ny][nx] = True
     return board, isAttack
@@ -121,11 +130,13 @@ def main():
             isAttack = isLaserAttack
         else: board, isAttack = shellAttack(board, isAttack, minTankPos, maxTankPos, N, M)
 
+
         # 3. 포탑 재정비
         board, isAttack = check(board, isAttack, N, M)
 
     # 최후 공격자 선언
     print(max([max(line) for line in board]))
+
 
 if __name__ == "__main__":
     main()
