@@ -47,7 +47,6 @@ def decideWeakandStrong(board, latestAttackBoard, N, M):
     return minTankPos, maxTankPos
 
 
-
 # 레이저 공격 or # 포탑 공격
 def laserAttack(board, isAttack, minTankPos, maxTankPos, N, M):
     attackPoint = board[minTankPos[0]][minTankPos[1]]
@@ -88,10 +87,6 @@ def shellAttack(board, isAttack, minTankPos, maxTankPos, N, M):
         board[ny][nx] -= (attackPoint // 2)
         isAttack[ny][nx] = True
     return board, isAttack
-
-
-
-
 
 # 포탑 재정비
 def check(board, isAttack, N, M):
