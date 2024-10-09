@@ -1,17 +1,8 @@
 from collections import deque
 
-from sympy.geometry.entity import rotate
 
 N_LARGE = 5
 N_SMALL = 3
-
-def printBoard(board):
-    for i in range(N_LARGE):
-        for j in range(N_LARGE):
-            print(board[i][j], end=' ')
-        print()
-    print()
-
 
 def rotateBoard(board, sy, sx, rotateCount):
     resultBoard = [row[:] for row in board]
