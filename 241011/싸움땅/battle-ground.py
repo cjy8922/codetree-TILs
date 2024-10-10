@@ -1,6 +1,3 @@
-import sys
-sys.stdin = open('input.txt', 'r')
-
 N, M, K = map(int, input().split())
 
 # 총의 공격력에 대한 정보
