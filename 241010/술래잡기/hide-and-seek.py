@@ -37,7 +37,7 @@ for k in range(1, K+1):
                 arr[i][2] = opp[arr[i][2]]
                 ni, nj = arr[i][0] + di[arr[i][2]], arr[i][1] + dj[arr[i][2]]
                 if (ni, nj) != (ti, tj):
-                    arr[i][0], arr[i][1]=ni, nj
+                    arr[i][0], arr[i][1] = ni, nj
 
     # 2. 술래의 이동
     cnt += 1
@@ -45,7 +45,7 @@ for k in range(1, K+1):
     if (ti, tj) == (1, 1):      # 안쪽으로 동작하는 달팽이 형태로 변형
         max_cnt, cnt, flag, val = N, 1, 1, -1
         td = 2
-    elif (ti, tj) == (M, M):    # 바깥쪽으로 동작하는 달팽이 형태로 변형
+    elif (ti, tj) == (tm, tm):    # 바깥쪽으로 동작하는 달팽이 형태로 변형
         max_cnt, cnt, flag, val = 1, 0, 0, 1
         td = 0
     else:
