@@ -58,17 +58,17 @@ for time in range(1, M + 1):
 
     # 1-1. 루돌프 이동 --> 가장 가까운 산타 찾기
     min_dist = N ** 2 + N ** 2 + 1      # 가장 큰값
-    min_list = []
+
     for idx in range(1, P + 1):
         if alive[idx] == 0: continue    # 탈락한 산타는 할 필요 없음
         si, sj = santa[idx]
-        dist = (ri - si) **2 + (rj - sj) ** 2
+        dist = (ri - si) ** 2 + (rj - sj) ** 2
         if dist < min_dist:
             min_dist = dist
-            min_list.append((si, sj, idx))
+            min_list = [(si, sj, idx)]
         elif dist == min_dist:
             min_list.append((si, sj, idx))
-    min_list = sorted(min_list, reverse=True)
+    min_list.sort(reverse=True)
     si, sj, min_idx = min_list[0]   # --> 돌격 목표 산타
 
     # 1-2. 루돌프 이동 --> 산타 방향으로 이동
