@@ -56,10 +56,6 @@ for T in range(1, K + 1):
                     (arr[i][j] == mn and turn[i][j] == mn_turn and i + j == si + sj and j > sj):
                 mn, mn_turn, si, sj = arr[i][j], turn[i][j], i, j
 
-    # 선정된 공격자 공격력 증가 + 이번 턴에 공격한다고 알림
-    arr[si][sj] += (N + M)
-    turn[si][sj] = T
-
     # 1-2. 공격력 높은 --> 가장 나중에 공격 --> 행 + 열이 작은 --> 열이 작을수록
     mx, mx_turn, ei, ej = 0, 1001, N, M
     for i in range(N):
@@ -70,6 +66,9 @@ for T in range(1, K + 1):
                     (arr[i][j] == mx and turn[i][j] == mx_turn and i + j == ei + ej and j < ej):
                 mx, mx_turn, ei, ej = arr[i][j], turn[i][j], i, j
 
+    # 선정된 공격자 공격력 증가 + 이번 턴에 공격한다고 알림
+    arr[si][sj] += (N + M)
+    turn[si][sj] = T
 
     # 2. 레이저 공격 (우, 하, 좌, 상) --> 수비자 -> 공격까지 최단 경로 확인
     fight_set = set()
