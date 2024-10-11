@@ -1,6 +1,3 @@
-import sys
-sys.stdin = open('input.txt', 'r')
-
 N, M, K = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 turn = [[0] * M for _ in range(N)]
