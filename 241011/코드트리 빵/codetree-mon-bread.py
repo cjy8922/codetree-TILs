@@ -1,6 +1,3 @@
-import sys
-sys.stdin = open('input.txt', 'r')
-
 # 입력 받기
 N, M = map(int, input().split())
 arr = [[1] * (N + 2)] + [[1] + list(map(int, input().split())) + [1] for _ in range(N)] + [[1] * (N + 2)]
