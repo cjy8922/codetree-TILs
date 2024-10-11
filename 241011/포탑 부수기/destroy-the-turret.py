@@ -1,3 +1,6 @@
+import sys
+sys.stdin = open('input.txt', 'r')
+
 N, M, K = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 turn = [[0] * M for _ in range(N)]
@@ -83,7 +86,7 @@ for T in range(1, K + 1):
     # 4. 재정비 (공격과 상관 없는 포탑은 + 1)
     for i in range(N):
         for j in range(M):
-            if (i, j) not in fight_set:
+            if (i, j) not in fight_set and arr[i][j] > 0:
                 arr[i][j] += 1
 
     # 5. 살아남은 포탑이 하나이면 가장 강한 공격력 출력
