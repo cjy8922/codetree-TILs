@@ -86,5 +86,10 @@ for T in range(1, K + 1):
                 arr[i][j] += 1
 
     # 5. 살아남은 포탑이 하나이면 가장 강한 공격력 출력
+    alive = 0
+    for i in range(N):
+        for j in range(M):
+            if arr[i][j] > 0: alive += 1
+    if alive == 1: break
 
 print(max(map(max, arr)))
